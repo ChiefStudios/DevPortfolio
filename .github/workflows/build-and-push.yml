@@ -16,7 +16,7 @@ permissions:
   packages: write
 
 env:
-  IMAGE_NAME: ghcr.io/cd-chief/dev-portfolio
+  IMAGE_NAME: ghcr.io/chiefstudios/dev-portfolio
 
 jobs:
   build-and-push:
@@ -37,8 +37,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # main -> ghcr.io/cd-chief/dev-portfolio:main (moving tag)
-      # main -> ghcr.io/cd-chief/dev-portfolio:main-<short-sha> (rollback target)
+      # main -> ghcr.io/chiefstudios/dev-portfolio:main (moving tag)
+      # main -> ghcr.io/chiefstudios/dev-portfolio:main-<short-sha> (rollback target)
       - name: Docker metadata
         id: meta
         uses: docker/metadata-action@v5

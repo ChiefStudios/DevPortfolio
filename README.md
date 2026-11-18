@@ -250,7 +250,7 @@ Set `HOST=0.0.0.0` (already set in the `Dockerfile`) so the server accepts conne
 ## ↩️ Rollback
 
 Rollback is manual:
-1. Find the last known-good SHA-tagged image in GHCR, e.g. `ghcr.io/cd-chief/dev-portfolio:main-<sha>` (the moving `main` tag is not a rollback target)
+1. Find the last known-good SHA-tagged image in GHCR, e.g. `ghcr.io/chiefstudios/dev-portfolio:main-<sha>` (the moving `main` tag is not a rollback target)
 2. In Coolify, point the app at that SHA tag and redeploy
 3. Check `/api/health` and the homepage
 4. Once stable, revert the bad commit or fix forward before the next normal deploy
