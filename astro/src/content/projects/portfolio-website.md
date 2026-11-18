@@ -77,4 +77,4 @@ One interesting challenge was implementing the modal system without using dynami
 
 ## Links
 
-- GitHub: <a href="https://github.com/CD-Chief/DevPortfolio" target="_blank" rel="noopener noreferrer">GitHub: Source Code</a>
+- GitHub: <a href="https://github.com/ChiefStudios/DevPortfolio" target="_blank" rel="noopener noreferrer">GitHub: Source Code</a>
