@@ -59,7 +59,12 @@ interface ListResponse<T> {
 	totalItems: number;
 }
 
+// Log in again well before the hub's token expiry. PocketBase ignores an expired token
+// instead of rejecting it, so an old token gets an empty 200, not a 401.
+const TOKEN_MAX_AGE_MS = 60 * 60_000;
+
 let token: string | null = null;
+let tokenAt = 0;
 let cached: { at: number; payload: StatsPayload } | null = null;
 let inflight: Promise<StatsPayload> | null = null;
 
@@ -120,10 +125,11 @@ async function authenticate(cfg: BeszelConfig) {
 	});
 	if (!res.ok) throw new Error(`Beszel auth failed: ${res.status}`);
 	token = ((await res.json()) as { token: string }).token;
+	tokenAt = Date.now();
 }
 
 async function list<T>(cfg: BeszelConfig, collection: string, params: Record<string, string>, retry = true): Promise<ListResponse<T>> {
-	if (!token) await authenticate(cfg);
+	if (!token || Date.now() - tokenAt > TOKEN_MAX_AGE_MS) await authenticate(cfg);
 	const qs = new URLSearchParams(params);
 	const res = await fetch(`${cfg.url}/api/collections/${collection}/records?${qs}`, {
 		headers: { authorization: token! },
@@ -221,6 +227,8 @@ export async function getBeszelStats(cfg: BeszelConfig): Promise<StatsPayload> {
 		})
 		.catch((err) => {
 			console.error('[stats]', err instanceof Error ? err.message : err);
+			// The token may be the problem even without a 401, so log in fresh on the next try
+			token = null;
 			if (!cached) throw err;
 			// Keep serving the old reading, but retry the hub on the next cache window
 			cached = { at: Date.now(), payload: { ...cached.payload, stale: true } };
