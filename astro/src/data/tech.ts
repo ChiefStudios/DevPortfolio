@@ -19,6 +19,10 @@ export const TECH = {
 	Proxmox: 'infra',
 	Beszel: 'infra',
 	Umami: 'infra',
+	Playwright: 'infra',
+	'Argo Rollouts': 'infra',
+	Cloudflare: 'infra',
+	Bitwarden: 'infra',
 
 	// Languages, frameworks and everything else
 	Python: 'general',
@@ -40,6 +44,8 @@ export const TECH = {
 	'Tailwind CSS': 'general',
 	Sanity: 'general',
 	Figma: 'general',
+	Rust: 'general',
+	Tauri: 'general',
 } as const satisfies Record<string, 'infra' | 'general'>;
 
 export type TechName = keyof typeof TECH;
@@ -52,5 +58,5 @@ export const sortTech = (names: readonly TechName[]) =>
 	[...names].sort((a, b) => Number(isInfra(b)) - Number(isInfra(a)));
 
 // Each post gets exactly one topic
-export const TOPICS = ['DevOps', 'Self-hosting', 'CI/CD', 'Career'] as const;
+export const TOPICS = ['DevOps', 'Self-hosting', 'CI/CD', 'Tools', 'Career'] as const;
 export type Topic = (typeof TOPICS)[number];
