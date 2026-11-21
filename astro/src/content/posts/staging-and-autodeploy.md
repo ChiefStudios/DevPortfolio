@@ -3,7 +3,7 @@ title: "Write Code, Push. That's the Whole Workflow Now"
 slug: "staging-and-autodeploy"
 excerpt: "Setting up a staging environment and deploying through the Coolify API turned five manual steps into one push."
 coverImage: "../../assets/posts/autodeployCover.png"
-publishedAt: "2026-10-30"
+publishedAt: "2026-12-04"
 topic: "CI/CD"
 tech: ["GitHub Actions", "Coolify", "GHCR", "Docker"]
 relatedPosts: ["offloading-docker-builds", "false-positive-health-checks"]
@@ -54,7 +54,7 @@ In Coolify I give each app the matching tag once, and the workflow asks Coolify 
 
 The only secrets are the Coolify URL and a token that can **only** deploy. It can't read or change anything. If it ever leaked, the worst someone could do is redeploy my sites.
 
-## Mistakes I made along the way
+## What went wrong
 
 **Using `curl -f`.** My first deploy step was a one liner with `curl -f`. When it failed, all I got was "the requested URL returned error: 400". No idea why. Now the step saves the response, prints the status code and the body (never the token), and fails on anything that isn't a 2xx. The body is nearly always the thing that tells you what went wrong.
 
@@ -62,9 +62,9 @@ The only secrets are the Coolify URL and a token that can **only** deploy. It ca
 
 **A typo in the tag.** If the tag in Coolify doesn't exactly match, the deploy call hits nothing and you sit there waiting for a deploy that was never started. Repo names like `DevPortfolio` have capitals in them, so the workflow lowercases everything, and I type tags in lowercase too.
 
-**Build time vs runtime.** Anything with `NEXT_PUBLIC_` in a Next.js site is baked into the image when it's built. I spent a while setting one in Coolify, redeploying and wondering why nothing changed. Those have to be passed in as build arguments in the workflow, everything else stays runtime.
+**Build time vs runtime.** Anything with `NEXT_PUBLIC_` in a Next.js site is baked into the image when it's built. It's easy to set one in Coolify, redeploy and wonder why nothing changed. Those have to be passed in as build arguments in the workflow, everything else stays runtime.
 
-## Worth it
+## The payoff
 
 None of this is complicated on its own. But together it means I can push a fix from my laptop, look at it on staging on my phone a minute later, and merge it to production when I'm happy, without logging in to anything.
 

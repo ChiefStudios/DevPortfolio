@@ -3,7 +3,7 @@ title: "Why I Swapped Grafana and Prometheus for Beszel (For Now)"
 slug: "moving-from-prometheus-to-beszel"
 excerpt: "Prometheus is great. It's also more than a single small server needs. Here is why I moved to something lighter."
 coverImage: "../../assets/posts/beszelCover.png"
-publishedAt: "2026-10-21"
+publishedAt: "2026-12-11"
 topic: "Self-hosting"
 tech: ["Beszel", "Prometheus", "Grafana", "Docker", "Coolify"]
 relatedPosts: ["offloading-docker-builds", "how-this-site-is-built"]

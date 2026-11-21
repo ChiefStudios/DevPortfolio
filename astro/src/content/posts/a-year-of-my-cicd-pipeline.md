@@ -3,7 +3,7 @@ title: "A Year of Building My CI/CD Pipeline"
 slug: "a-year-of-my-cicd-pipeline"
 excerpt: "From a bash script and a Cloudflare tunnel on a Raspberry Pi to smoke tests, health checks and deploys on every push. How it grew, and how it keeps client sites online."
 coverImage: "../../assets/posts/pipelineCover.png"
-publishedAt: "2026-11-15"
+publishedAt: "2026-12-15"
 topic: "CI/CD"
 tech: ["GitHub Actions", "Docker", "GHCR", "Coolify", "Playwright", "Raspberry Pi", "Cloudflare"]
 relatedPosts: ["offloading-docker-builds", "false-positive-health-checks", "staging-and-autodeploy", "safari-videos-and-playwright"]
@@ -60,6 +60,14 @@ When people hear "push to main deploys production" they sometimes assume that's 
 
 That last step is the one that matters most. A bad deploy usually means "the deploy failed", not "the site is down".
 
+## Everything runs through GitHub
+
+My code, my builds, my image registry and my deploy trigger are all GitHub. I found out how much that matters one evening when my runs started failing and taking ages. I spent far too long going through my own workflows, sure I'd broken something, before I realised GitHub was having a bad day. I'd never been hit by an outage before, and until then GitHub felt like the one thing that was always just there.
+
+The sites stayed up, because serving a website doesn't need GitHub once the image is on the server. Coolify keeps running the containers it already has. An outage stops me shipping, not my clients' sites running. Next time I'll check the status page before I start tearing my own pipeline apart.
+
+I haven't built a fallback, like a second registry or building locally and pushing by hand. For a handful of sites it's cheaper to wait out an outage than to maintain a second pipeline. But I think about it.
+
 ## Being honest about the gaps
 
 It's not perfect, and I think it's worth saying where:
@@ -70,4 +78,4 @@ It's not perfect, and I think it's worth saying where:
 
 ## What's next
 
-The thing that bugs me most right now is that every repo has its own copy of a Coolify token in its GitHub secrets. Eight repos, eight copies of the same key. I've started building something to sit in front of Coolify so repos don't need that at all. That one gets its own post.
+The thing that bugged me most was that every repo had its own copy of a Coolify token in its GitHub secrets. Eight repos, eight copies of the same key. So I built something to sit in front of Coolify, and now repos deploy through it without holding any token. That one gets its own post.

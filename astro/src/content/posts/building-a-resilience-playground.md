@@ -3,7 +3,7 @@ title: "Breaking Kubernetes on Purpose: Building a Resilience Playground"
 slug: "building-a-resilience-playground"
 excerpt: "I wanted to actually understand Kubernetes, Terraform and Ansible, not just list them. So I built a lab where you press a button, something breaks, and you watch it heal."
 coverImage: "../../assets/posts/resilienceCover.png"
-publishedAt: "2026-11-18"
+publishedAt: "2026-11-26"
 topic: "DevOps"
 tech: ["Kubernetes", "Argo Rollouts", "Prometheus", "Terraform", "Ansible", "Docker", "GitHub Actions", "TypeScript"]
 relatedPosts: ["moving-from-prometheus-to-beszel"]
@@ -60,7 +60,7 @@ The local version runs on k3d on my laptop. For a real server I wrote it out pro
 
 It's all built, but not live yet, since that needs a Hetzner account I haven't set up. Running it is the next step.
 
-## Mistakes, some more niche than others
+## Things that bit me
 
 **`ImagePullBackOff` on my own laptop.** The images only exist locally, so they have to be copied into the k3d cluster. Forget that step and every pod just sits there trying to download an image that doesn't exist anywhere.
 
@@ -70,6 +70,8 @@ It's all built, but not live yet, since that needs a Hetzner account I haven't s
 
 **Cleaning up after a broken release.** If the controller restarted in the middle of a bad deploy, the broken image stayed set. Now the controller puts the image back on startup, so the lab is never left broken.
 
-## Was it worth it?
+## What's next
 
-Massively. I went from "I know what Kubernetes is" to being able to explain why a specific pod did a specific thing at a specific second. And I've got real numbers to back it up, which I think is worth more than another line on a CV.
+Going live on a real Hetzner server comes first. After that I want to hand deploys over to Argo CD, and add a fifth fault: losing a dependency, with a circuit breaker to deal with it.
+
+The bit I'm happiest with is that I can now explain why a specific pod did a specific thing at a specific second, and I've got numbers to back it up.

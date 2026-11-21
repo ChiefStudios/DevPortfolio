@@ -3,7 +3,7 @@ title: "Building Tower: One Door in Front of Coolify"
 slug: "building-tower"
 excerpt: "I built a small control layer over Coolify so none of my repos hold a Coolify token any more. Here is how it works and everything that went wrong along the way."
 coverImage: "../../assets/posts/towerCover.png"
-publishedAt: "2026-11-20"
+publishedAt: "2026-12-18"
 topic: "Self-hosting"
 tech: ["Coolify", "GitHub Actions", "Next.js", "TypeScript", "SQLite", "Docker", "Playwright"]
 relatedPosts: ["a-year-of-my-cicd-pipeline", "staging-and-autodeploy", "managing-secrets-with-keys"]
@@ -31,7 +31,7 @@ So a deploy step in any of my repos is now just:
 
 No secrets. Tower waits for the deploy, and the job fails unless it actually succeeds. Before this, CI would go green as soon as Coolify had *accepted* the request, even if the deploy failed a minute later.
 
-On top of that it has a dashboard: every project with its staging and production side by side, live container status, a queue of running deploys, one click redeploys, and an audit log of every action. Today it also learned to switch on `noindex` and basic auth for a staging site in one click.
+On top of that it has a dashboard: every project with its staging and production side by side, live container status, a queue of running deploys, one click redeploys, and an audit log of every action. It can also switch on `noindex` and basic auth for a staging site in one click.
 
 All seven of my sites deploy through it now, and the shared Coolify token is deleted.
 
@@ -51,7 +51,7 @@ This is the part I actually wanted to write about, because a lot of it didn't go
 
 **GitHub's OIDC endpoint sometimes just fails.** Rarely, but enough to turn a random deploy red. The action now retries it.
 
-**The database that kept disappearing.** Tower stores everything in SQLite. Without a persistent volume, every redeploy of tower wiped its own history. Now it shows on the dashboard whether its data folder is a real volume, and warns at startup if not. (I wrote more about this in [How I Got Over My Fear of Databases](/blog/getting-over-my-fear-of-databases).)
+**The database that kept disappearing.** Tower stores everything in SQLite. Without a persistent volume, every redeploy of tower wiped its own history. Now it shows on the dashboard whether its data folder is a real volume, and warns at startup if not.
 
 **Tower deploying itself.** Tower deploys through tower. Which is great until tower is broken and can't deploy the fix. The fallback is clicking Redeploy in Coolify by hand, which pulls the latest image. Not elegant, but it means I can never lock myself out.
 

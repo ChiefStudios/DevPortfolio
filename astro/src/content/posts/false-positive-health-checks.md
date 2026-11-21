@@ -3,7 +3,7 @@ title: "My Health Check Passed. It Shouldn't Have."
 slug: "false-positive-health-checks"
 excerpt: "A container that reported healthy while the check itself couldn't even run, and what a health check actually needs to prove."
 coverImage: "../../assets/posts/healthcheckCover.png"
-publishedAt: "2026-10-08"
+publishedAt: "2026-12-01"
 topic: "DevOps"
 tech: ["Docker", "Coolify", "GitHub Actions"]
 relatedPosts: ["how-this-site-is-built"]
