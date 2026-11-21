@@ -3,7 +3,7 @@ title: "A Traffic Light for My AI Coding Sessions"
 slug: "traffic-light-for-ai-sessions"
 excerpt: "I kept losing track of which coding assistant window needed me. So I built a tiny always-on-top widget with one light per session."
 coverImage: "../../assets/posts/trafficLightCover.png"
-publishedAt: "2026-11-17"
+publishedAt: "2026-12-22"
 topic: "Tools"
 tech: ["Rust", "Tauri", "JavaScript", "CSS"]
 ---
@@ -51,16 +51,14 @@ I thought this would take an afternoon. The state machine was the easy part. Get
 
 ## Then I couldn't stop
 
-Once it worked I got a bit carried away with designs. There are six now, from a plain dark pill to a "liquid glass" one where a droplet slides between the colours, to a terminal style one that just says RUN / WAIT / IDLE / ERR.
+Once it worked I got carried away with designs. There are six now, from a plain dark pill to a "liquid glass" one where a droplet slides between the colours, to a terminal style one that just says RUN / WAIT / IDLE / ERR.
 
-Next on the list:
+It picked up a few features too:
 
-- **A waiting timer**, so an amber light shows how long it's been waiting on me.
-- **Click to jump**, so clicking a light brings that session's window to the front. The plan is to work out which process sent the event from the local connection and walk up its parent processes until one has a visible window.
-- **Plan limits**, a thin strip showing how close I am to my usage limit.
+- **A waiting timer.** An amber row shows how long it has been waiting on me, which is the number I actually care about.
+- **Click to jump.** Clicking a light brings that session's window to the front. When an event arrives, the widget looks up which process owns the other end of the local connection, remembers its parent processes, and raises the nearest one that has a visible window. If it can't find one, the row shakes.
+- **Plan limits.** A thin strip along the edge of the panel shows how much of my 5-hour and weekly limits I've used. It goes amber from 70% and red from 90%.
 
-## Was it worth it?
+It sounds like a tiny thing, but the time I was losing to a session quietly waiting on me was a lot more than I'd have guessed. Now I just look at the corner of the screen.
 
-Yes. It sounds like a tiny thing, but the amount of time I was losing to a session quietly waiting on me was a lot more than I'd have guessed. Now I just look at the corner of the screen.
-
-It's also the most fun I've had on a side project in a while. Small, useful, and an excuse to finally write some Rust.
+It's also been the most fun side project in a while. Small, useful, and an excuse to finally write some Rust.

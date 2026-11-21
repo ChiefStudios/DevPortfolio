@@ -3,7 +3,7 @@ title: "Handling Secrets Is Really Annoying, So I Built a Tool for It"
 slug: "managing-secrets-with-keys"
 excerpt: "Five sites, two environments each, build-time and runtime keys. I spent a couple of hours on a CLI so I never copy an API key by hand again."
 coverImage: "../../assets/posts/keysCover.png"
-publishedAt: "2026-11-03"
+publishedAt: "2026-12-08"
 topic: "Tools"
 tech: ["Bitwarden", "GitHub Actions", "Coolify", "JavaScript"]
 relatedPosts: ["staging-and-autodeploy"]
@@ -52,7 +52,7 @@ Since it handles every secret I own, I was strict about a few things:
 - It never deletes anything on GitHub. If there's a secret there that isn't in `secrets.json`, it lists it and leaves it alone.
 - The tests use a fake `bw` command, so running them never touches my real vault.
 
-## Things that caught me out
+## Where it got fiddly
 
 **Coolify's Developer view replaces everything.** Coolify has a view where you paste all variables as text. I assumed it would add to what's there. It doesn't, it replaces the whole lot. So if you paste only the two keys you changed, the rest are gone. That's why `keys copy` always builds the *complete* block for a scope, never a partial one.
 
@@ -60,6 +60,6 @@ Since it handles every secret I own, I was strict about a few things:
 
 **Locking and unlocking.** Bitwarden's CLI needs to be unlocked, and I didn't want to store a session anywhere. If it's locked, `keys` asks for my master password itself and keeps the session only for that one run.
 
-## Was it worth it?
+## Since then
 
-A couple of hours to build, and setting up a new site's secrets went from a slow, nervous copy and paste job to a couple of commands. More importantly I'm no longer the source of truth for what each environment needs. The repo is.
+Setting up a new site's secrets went from a slow, nervous copy and paste job to a couple of commands. And I'm no longer the source of truth for what each environment needs. The repo is.

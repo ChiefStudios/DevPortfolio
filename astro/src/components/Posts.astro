@@ -3,10 +3,11 @@ import { getCollection } from 'astro:content';
 import PostCard from './PostCard.astro';
 import SectionHeader from './SectionHeader.astro';
 import { slugify } from '../utils/slug';
+import { isPublished } from '../utils/date';
 
 const POST_SLOTS = 3;
 
-const allPosts = await getCollection('posts');
+const allPosts = await getCollection('posts', ({ data }) => isPublished(data.publishedAt));
 
 const sortedPosts = allPosts.sort(
   (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
