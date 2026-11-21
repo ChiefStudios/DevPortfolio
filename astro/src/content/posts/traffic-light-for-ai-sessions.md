@@ -3,7 +3,7 @@ title: "A Traffic Light for My AI Coding Sessions"
 slug: "traffic-light-for-ai-sessions"
 excerpt: "I kept losing track of which coding assistant window needed me. So I built a tiny always-on-top widget with one light per session."
 coverImage: "../../assets/posts/trafficLightCover.png"
-publishedAt: "2026-12-22"
+publishedAt: "2026-12-09"
 topic: "Tools"
 tech: ["Rust", "Tauri", "JavaScript", "CSS"]
 ---
@@ -60,5 +60,3 @@ It picked up a few features too:
 - **Plan limits.** A thin strip along the edge of the panel shows how much of my 5-hour and weekly limits I've used. It goes amber from 70% and red from 90%.
 
 It sounds like a tiny thing, but the time I was losing to a session quietly waiting on me was a lot more than I'd have guessed. Now I just look at the corner of the screen.
-
-It's also been the most fun side project in a while. Small, useful, and an excuse to finally write some Rust.

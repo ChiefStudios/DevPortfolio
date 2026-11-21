@@ -20,7 +20,6 @@ export const TECH = {
 	Beszel: 'infra',
 	Umami: 'infra',
 	Playwright: 'infra',
-	'Argo Rollouts': 'infra',
 	Cloudflare: 'infra',
 	Bitwarden: 'infra',
 

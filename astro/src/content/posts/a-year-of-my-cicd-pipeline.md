@@ -3,7 +3,7 @@ title: "A Year of Building My CI/CD Pipeline"
 slug: "a-year-of-my-cicd-pipeline"
 excerpt: "From a bash script and a Cloudflare tunnel on a Raspberry Pi to smoke tests, health checks and deploys on every push. How it grew, and how it keeps client sites online."
 coverImage: "../../assets/posts/pipelineCover.png"
-publishedAt: "2026-12-15"
+publishedAt: "2026-11-25"
 topic: "CI/CD"
 tech: ["GitHub Actions", "Docker", "GHCR", "Coolify", "Playwright", "Raspberry Pi", "Cloudflare"]
 relatedPosts: ["offloading-docker-builds", "false-positive-health-checks", "staging-and-autodeploy", "safari-videos-and-playwright"]
@@ -62,7 +62,15 @@ That last step is the one that matters most. A bad deploy usually means "the dep
 
 ## Everything runs through GitHub
 
-My code, my builds, my image registry and my deploy trigger are all GitHub. I found out how much that matters one evening when my runs started failing and taking ages. I spent far too long going through my own workflows, sure I'd broken something, before I realised GitHub was having a bad day. I'd never been hit by an outage before, and until then GitHub felt like the one thing that was always just there.
+My code, my builds, my image registry and my deploy trigger are all GitHub. I found out how much that matters on the evening of 5 October, when my runs started failing and taking ages. These were the first runs of a brand new workflow, so of course I assumed I'd broken it. I spent far too long going through my own setup before I checked GitHub's status page, which was already posting about an incident with Actions: delays assigning hosted runners, and job failures.
+
+![GitHub's status page showing an incident with Actions, with updates from 19:11 UTC on 5 October 2026](../../assets/posts/githubStatus.jpg)
+*GitHub's status page that evening.*
+
+![Five failed runs of the frontend-build-and-push workflow, numbers 1 to 5](../../assets/posts/githubFailedRuns.jpg)
+*Every run of the new workflow had failed. The workflow was fine.*
+
+I'd never been hit by an outage before, and until then GitHub felt like the one thing that was always just there.
 
 The sites stayed up, because serving a website doesn't need GitHub once the image is on the server. Coolify keeps running the containers it already has. An outage stops me shipping, not my clients' sites running. Next time I'll check the status page before I start tearing my own pipeline apart.
 

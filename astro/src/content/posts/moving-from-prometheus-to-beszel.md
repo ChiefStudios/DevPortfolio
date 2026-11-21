@@ -3,7 +3,7 @@ title: "Why I Swapped Grafana and Prometheus for Beszel (For Now)"
 slug: "moving-from-prometheus-to-beszel"
 excerpt: "Prometheus is great. It's also more than a single small server needs. Here is why I moved to something lighter."
 coverImage: "../../assets/posts/beszelCover.png"
-publishedAt: "2026-12-11"
+publishedAt: "2026-10-21"
 topic: "Self-hosting"
 tech: ["Beszel", "Prometheus", "Grafana", "Docker", "Coolify"]
 relatedPosts: ["offloading-docker-builds", "how-this-site-is-built"]
@@ -20,7 +20,7 @@ But I've decided to part ways with it on my server. At least for now.
 
 Prometheus is especially heavy at my scale, and thats not me saying it's unreasonably heavy. It does a lot. It's built to scrape hundreds of targets, store long histories, and answer complicated queries across all of it, which is exactly why it's so popular.
 
-I run one VPS with under 4 GB of RAM. On that box I have Coolify, a reverse proxy, analytics, a handful of client sites with staging copies, and this portfolio. Every few hundred MB matters. Paying that much memory for a monitoring stack to watch a server that is mostly short on memory felt a bit backwards.
+My main VPS has under 4 GB of RAM. On that box I have Coolify, a reverse proxy, analytics, a handful of client sites with staging copies, and this portfolio. Every few hundred MB matters. Paying that much memory for a monitoring stack to watch a server that is mostly short on memory felt a bit backwards.
 
 When I was honest with myself about what I actually looked at in Grafana, it was always the same few things:
 
@@ -34,6 +34,9 @@ That's it. I wasn't writing PromQL queries. I had one dashboard and I opened it 
 ## Beszel
 
 [Beszel](https://beszel.dev) is a much lighter and simpler tool. There's a small hub with a web UI and an agent on the server that reports system and per-container stats. It covers everything on that list above, it has alerts, and it barely registers on the memory graph.
+
+![Beszel's system page: CPU and memory for the server, with the same numbers per container next to them](../../assets/posts/beszelDashboard.png)
+*One of my servers in Beszel. The Docker panels on the right are the per-container view I actually use.*
 
 It's not as powerful. There's no query language and you can't build crazy custom dashboards. But I didn't need that, and I get the same level of observability I was actually using without giving up a chunk of the server.
 
@@ -51,4 +54,4 @@ I think this shows something I keep running into. It's easy to gravitate to the 
 
 But "industry standard" and "right for a single small server" aren't the same question. It's worth researching what fits what you're actually running, not what you might be running one day.
 
-If I end up with several servers, Prometheus will probably come back. Until then, Beszel it is.
+If I outgrow it, Prometheus will probably come back. Until then, Beszel it is.
