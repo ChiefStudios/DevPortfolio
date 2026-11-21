@@ -8,7 +8,7 @@ link: "#"
 image: "../../assets/posts/portfolio-infra.png"
 showMoreButton: true
 year: "2025 - now"
-featured: 1
+featured: 3
 ---
 
 # This Portfolio Website

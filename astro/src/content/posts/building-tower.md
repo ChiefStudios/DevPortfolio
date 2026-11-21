@@ -7,7 +7,7 @@ publishedAt: "2026-12-02"
 topic: "Self-hosting"
 tech: ["Coolify", "GitHub Actions", "Next.js", "TypeScript", "SQLite", "Docker", "Playwright"]
 relatedPosts: ["a-year-of-my-cicd-pipeline", "staging-and-autodeploy", "managing-secrets-with-keys"]
-relatedProjects: [9]
+relatedProjects: [11]
 ---
 
 # Building Tower: One Door in Front of Coolify

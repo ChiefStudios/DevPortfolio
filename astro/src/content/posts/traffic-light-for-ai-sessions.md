@@ -6,6 +6,7 @@ coverImage: "../../assets/posts/trafficLightCover.png"
 publishedAt: "2026-12-09"
 topic: "Tools"
 tech: ["Rust", "Tauri", "JavaScript", "CSS"]
+relatedProjects: [13]
 ---
 
 # A Traffic Light for My AI Coding Sessions

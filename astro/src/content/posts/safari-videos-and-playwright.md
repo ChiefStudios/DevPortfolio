@@ -7,6 +7,7 @@ publishedAt: "2026-11-11"
 topic: "CI/CD"
 tech: ["Playwright", "GitHub Actions", "Next.js", "TypeScript"]
 relatedPosts: ["staging-and-autodeploy"]
+relatedProjects: [10]
 ---
 
 # The Videos Worked Everywhere Except on My Client's iPhone
