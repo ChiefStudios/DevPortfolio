@@ -67,6 +67,21 @@ This is where the more niche mistakes came in.
 
 WebKit got me most of the way, but it's still not the real thing. In the end I used the free trial of one of the paid services that let you remotely test your site on real Apple devices, and confirmed it on an actual iPhone and Mac.
 
+For the real device I used a small test page with a few versions of the same clip, each one logging what the video element was doing. The version built like the site (poster image underneath, clipped, rounded, animated, `play()` called from a script) never got anywhere. After five seconds it was still at ready state 0 with a video width of 0, which means no data had loaded at all. A plain video with controls was stuck in the same way: a brown box with a play button.
+
+![Test page on the iPhone: the site-style video and a plain video with controls, both with no data loaded](../../assets/posts/iphoneTestSiteSetup.png)
+*The site's setup, then a plain video with controls. Neither loaded anything.*
+
+The controls were more interesting. A public sample video from another host loaded straight away, and so did our own clip once I gave it a fresh URL to skip any cached copy.
+
+![Test page on the iPhone: a public sample video that loads, with a video width of 960](../../assets/posts/iphoneTestControl.png)
+*A sample video from another host: metadata and data loaded within half a second.*
+
+![Test page on the iPhone: our clip with a fresh URL that loads, with a video width of 480](../../assets/posts/iphoneTestFreshUrl.png)
+*Our own clip with a fresh URL. It loads too.*
+
+So the file itself was fine on the phone. What differed was the original URL.
+
 Actually crazy that there's a whole market just for this, because you can't legally run Safari on anything but Apple hardware.
 
 ## What I'd do differently
