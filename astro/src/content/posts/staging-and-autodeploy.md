@@ -7,7 +7,7 @@ publishedAt: "2026-10-12"
 topic: "CI/CD"
 tech: ["GitHub Actions", "Coolify", "GHCR", "Docker"]
 relatedPosts: ["offloading-docker-builds", "false-positive-health-checks"]
-relatedProjects: [9]
+relatedProjects: [10, 9]
 ---
 
 # Write Code, Push. That's the Whole Workflow Now

@@ -7,6 +7,7 @@ publishedAt: "2026-11-03"
 topic: "Tools"
 tech: ["Bitwarden", "GitHub Actions", "Coolify", "JavaScript"]
 relatedPosts: ["staging-and-autodeploy"]
+relatedProjects: [12]
 ---
 
 # Handling Secrets Is Really Annoying, So I Built a Tool for It
