@@ -3,7 +3,7 @@ title: "Write Code, Push. That's the Whole Workflow Now"
 slug: "staging-and-autodeploy"
 excerpt: "Setting up a staging environment and deploying through the Coolify API turned five manual steps into one push."
 coverImage: "../../assets/posts/autodeployCover.png"
-publishedAt: "2026-10-30"
+publishedAt: "2026-10-12"
 topic: "CI/CD"
 tech: ["GitHub Actions", "Coolify", "GHCR", "Docker"]
 relatedPosts: ["offloading-docker-builds", "false-positive-health-checks"]
