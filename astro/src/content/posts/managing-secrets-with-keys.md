@@ -3,7 +3,7 @@ title: "Handling Secrets Is Really Annoying, So I Built a Tool for It"
 slug: "managing-secrets-with-keys"
 excerpt: "Five sites, two environments each, build-time and runtime keys. I spent a couple of hours on a CLI so I never copy an API key by hand again."
 coverImage: "../../assets/posts/keysCover.png"
-publishedAt: "2026-12-08"
+publishedAt: "2026-11-03"
 topic: "Tools"
 tech: ["Bitwarden", "GitHub Actions", "Coolify", "JavaScript"]
 relatedPosts: ["staging-and-autodeploy"]
@@ -29,7 +29,11 @@ So the `secrets.json` is basically a map. This key is a GitHub secret, this one 
 
 ## How I use it
 
-In any repo I run `keys set <client>` and it asks me for every secret that isn't stored yet. I paste the value, nothing shows on screen, and it only tells me the length so I know the paste worked. It goes straight into Bitwarden.
+Run `keys` with no arguments and you get a menu:
+
+![The keys menu in a terminal: Check, Store missing secrets, Store or replace one secret, Copy a block for Coolify, Copy one secret, Sync to GitHub, Show plan, Quit](../../assets/posts/keysMenu.png)
+
+Everything in the menu is also a command. In any repo I run `keys set <client>` and it asks me for every secret that isn't stored yet. I paste the value, nothing shows on screen, and it only tells me the length so I know the paste worked. It goes straight into Bitwarden.
 
 When I need to set up an environment, I run:
 

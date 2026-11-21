@@ -3,7 +3,7 @@ title: "Building Tower: One Door in Front of Coolify"
 slug: "building-tower"
 excerpt: "I built a small control layer over Coolify so none of my repos hold a Coolify token any more. Here is how it works and everything that went wrong along the way."
 coverImage: "../../assets/posts/towerCover.png"
-publishedAt: "2026-12-18"
+publishedAt: "2026-12-02"
 topic: "Self-hosting"
 tech: ["Coolify", "GitHub Actions", "Next.js", "TypeScript", "SQLite", "Docker", "Playwright"]
 relatedPosts: ["a-year-of-my-cicd-pipeline", "staging-and-autodeploy", "managing-secrets-with-keys"]

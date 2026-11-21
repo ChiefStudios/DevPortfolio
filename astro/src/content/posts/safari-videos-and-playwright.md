@@ -3,7 +3,7 @@ title: "The Videos Worked Everywhere Except on My Client's iPhone"
 slug: "safari-videos-and-playwright"
 excerpt: "Video tiles that disappeared on Apple devices, a rabbit hole of Safari quirks, and how I ended up running WebKit tests in CI from a Windows laptop."
 coverImage: "../../assets/posts/webkitCover.png"
-publishedAt: "2026-11-24"
+publishedAt: "2026-11-11"
 topic: "CI/CD"
 tech: ["Playwright", "GitHub Actions", "Next.js", "TypeScript"]
 relatedPosts: ["staging-and-autodeploy"]
