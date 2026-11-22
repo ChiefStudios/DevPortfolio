@@ -158,7 +158,7 @@ See [`.env.example`](.env.example). Copy it to `.env` for `docker compose`, or t
 - **Sitemap:** `@astrojs/sitemap` writes `sitemap-index.xml` at build time from the prerendered pages (API routes excluded). URLs have no trailing slash, matching the canonical tags. `public/robots.txt` points to it and disallows `/api/`.
 - **Head tags:** [`Layout.astro`](astro/src/layouts/Layout.astro) sets a per-page title, description, canonical URL, Open Graph and Twitter tags, and favicons from `public/`. The site URL comes from `site` in `astro.config.mjs`.
 - **Structured data:** the homepage emits `WebSite` and `Person` JSON-LD, and each post emits `BlogPosting`. Pass a `jsonLd` prop to the layout to add more.
-- **Preview image:** `public/og-image.png` (1200x630) is used for link previews. It is a screenshot of a small HTML page in the site's style, so regenerate it if the headline changes.
+- **Preview image:** `public/og-image.png` (1200x630) is the default link preview. It is rendered from `astro/scripts/og/og-image.html`: edit the text, run `node scripts/og/render.mjs` from `astro/` (needs Playwright), then bump `?v=` on `DEFAULT_OG_IMAGE` in `Layout.astro` so LinkedIn fetches the new one. Posts use their own cover, cropped to 1200x630 at build time.
 - **404 page:** `src/pages/404.astro`, marked `noindex`.
 
 ## 📈 Analytics
