@@ -3,6 +3,7 @@ import "../styles/global.css"
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { UMAMI } from '../data/analytics';
+import { CLIENTS, WEEKLY_USERS, countWord } from '../data/clients';
 
 interface Props {
 	title?: string;
@@ -14,15 +15,29 @@ interface Props {
 	noindex?: boolean;
 	// The homepage hero carries its own intro, so it skips the top nav
 	header?: boolean;
+	// Link preview image; defaults to the site-wide card. Posts pass their own cover.
+	image?: { src: string; width: number; height: number; alt: string };
+	// Posts only: publish date and tags for article previews
+	article?: { publishedTime: string; tags: readonly string[] };
 }
+
+// Bump the version when public/og-image.png changes, so LinkedIn and others fetch it again
+const DEFAULT_OG_IMAGE = {
+	src: '/og-image.png?v=2',
+	width: 1200,
+	height: 630,
+	alt: 'Chief-Daniel Osei: I build and run the infrastructure behind websites serving thousands.',
+};
 
 const {
 	title = 'Chief-Daniel Osei | DevOps & Cloud Infrastructure',
-	description = 'Chief-Daniel Osei builds and runs the infrastructure behind real websites: reproducible environments, CI/CD and monitoring. Based in Duisburg, Germany.',
+	description = `Chief-Daniel Osei builds and runs the infrastructure behind websites serving thousands: ${countWord(CLIENTS.length)} client sites with ${WEEKLY_USERS} weekly users, with CI/CD, self-hosting and monitoring. Based in Duisburg, Germany.`,
 	type = 'website',
 	jsonLd,
 	noindex = false,
 	header = true,
+	image = DEFAULT_OG_IMAGE,
+	article,
 } = Astro.props;
 
 // Pages are prerendered, so a runtime env flag would be frozen at build time. Instead the script is
@@ -31,7 +46,7 @@ const {
 const analyticsDomain = Astro.site ? Astro.site.hostname : undefined;
 const trackAnalytics = import.meta.env.PROD && Boolean(analyticsDomain);
 // Match the links used across the site: no trailing slash except on the homepage
-const ogImage = new URL('/og-image.png', Astro.site);
+const ogImage = new URL(image.src, Astro.site);
 const canonical = new URL(Astro.url.pathname.replace(/(.)\/$/, '$1'), Astro.site);
 ---
 
@@ -62,13 +77,17 @@ const canonical = new URL(Astro.url.pathname.replace(/(.)\/$/, '$1'), Astro.site
 		<meta property="og:url" content={canonical} />
 		<meta property="og:locale" content="en_GB" />
 		<meta property="og:image" content={ogImage} />
-		<meta property="og:image:width" content="1200" />
-		<meta property="og:image:height" content="630" />
-		<meta property="og:image:alt" content="Chief-Daniel Osei: I build and run the infrastructure behind real websites." />
+		<meta property="og:image:width" content={String(image.width)} />
+		<meta property="og:image:height" content={String(image.height)} />
+		<meta property="og:image:alt" content={image.alt} />
+		{article && <meta property="article:published_time" content={article.publishedTime} />}
+		{article && <meta property="article:author" content="Chief-Daniel Osei" />}
+		{article?.tags.map((tag) => <meta property="article:tag" content={tag} />)}
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:image:alt" content={image.alt} />
 		{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\u003c')} />}
 		{trackAnalytics && (
 			<script is:inline defer src={UMAMI.scriptUrl} data-website-id={UMAMI.websiteId} data-domains={analyticsDomain} />
