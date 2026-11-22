@@ -59,13 +59,13 @@ Since it handles every secret I own, I was strict about a few things:
 
 ## Where it got fiddly
 
-**Coolify's Developer view replaces everything.** Coolify has a view where you paste all variables as text. I assumed it would add to what's there. It doesn't, it replaces the whole lot. So if you paste only the two keys you changed, the rest are gone. That's why `keys copy` always builds the *complete* block for a scope, never a partial one.
-
 **Build-time keys.** Pasting a build-time key into Coolify does nothing until the image is rebuilt. The tool now lists which keys are build time so I tick the right box and rerun the build.
 
 **Bitwarden is slow from a script.** Every `bw` call takes about a second, and my first version made one per secret, plus a vault sync on every run. Now it reads a whole client folder in one call and skips the sync if one ran in the last five minutes.
 
 **Locking and unlocking.** Bitwarden's CLI needs to be unlocked, and I didn't want to store a session anywhere. If it's locked, `keys` asks for my master password itself and keeps the session only for that one run.
+
+**Coolify's Developer view replaces everything.** Coolify has a view where you paste all variables as text. I assumed it would add to what's there. It doesn't, it replaces the whole lot. So if you paste only the two keys you changed, the rest are gone. That's why `keys copy` always builds the *complete* block for a scope, never a partial one.
 
 ## Since then
 
