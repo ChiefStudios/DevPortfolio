@@ -1,5 +1,5 @@
 ---
-title: "The Videos Worked Everywhere Except on My Client's iPhone"
+title: "Getting Autoplay Videos to Work on Apple Devices"
 slug: "safari-videos-and-playwright"
 excerpt: "Video tiles that disappeared on Apple devices, a rabbit hole of Safari quirks, and how I ended up running WebKit tests in CI from a Windows laptop."
 coverImage: "../../assets/posts/webkitCover.png"
@@ -10,7 +10,7 @@ relatedPosts: ["staging-and-autodeploy"]
 relatedProjects: [10]
 ---
 
-# The Videos Worked Everywhere Except on My Client's iPhone
+# Getting Autoplay Videos to Work on Apple Devices
 
 I built a website for a restaurant client. The homepage has a gallery of food photos in scrolling columns, and they wanted some of it to move, so I swapped a few of the photos for short looping videos.
 

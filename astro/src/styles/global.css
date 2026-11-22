@@ -70,6 +70,31 @@ html {
         color: var(--color-accent);
     }
 
+    /* Eyebrow under a heading, in square brackets that blink like a cursor.
+       The empty alt text keeps screen readers from reading the brackets out. */
+    .eyebrow-tag::before {
+        content: '[';
+        content: '[' / '';
+    }
+
+    .eyebrow-tag::after {
+        content: ']';
+        content: ']' / '';
+    }
+
+    .eyebrow-tag::before,
+    .eyebrow-tag::after {
+        display: inline-block;
+        margin-inline: 0.4em;
+        animation: bracket-blink 1.2s steps(1, end) infinite;
+    }
+
+    @keyframes bracket-blink {
+        50% {
+            opacity: 0;
+        }
+    }
+
     .card {
         border-radius: 1rem;
         border: 1px solid var(--color-line);
@@ -202,5 +227,10 @@ html {
     .btn:hover,
     .card-hover:hover {
         transform: none;
+    }
+
+    .eyebrow-tag::before,
+    .eyebrow-tag::after {
+        animation: none;
     }
 }
