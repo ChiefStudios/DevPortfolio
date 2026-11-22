@@ -1,6 +1,6 @@
 ---
 id: 10
-title: "Client Sites (Chief Studios)"
+title: "Websites I Run for Clients"
 size: "L"
 tech: ["Docker", "GitHub Actions", "GHCR", "Coolify", "Traefik", "Beszel", "Umami", "Playwright", "Next.js", "Sanity", "TypeScript"]
 summary: "The websites I build and then keep running for clients through Chief Studios. Every site gets the same setup underneath: an image built in CI, staging and production, deploys through Tower, health checks and monitoring."
@@ -11,7 +11,7 @@ showClients: true
 featured: 2
 ---
 
-# Client Sites
+# Websites I Run for Clients
 
 Through Chief Studios I build websites for small businesses, and then I keep running them. The sites look nothing alike, but the setup underneath is the same for every one.
 
