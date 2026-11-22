@@ -21,6 +21,8 @@ const projectsCollection = defineCollection({
       featured: z.number().int().positive().optional(),
       // Shown in the "Earlier work" section on /projects instead of the main grid
       archived: z.boolean().default(false),
+      // Lists the client sites from src/data/clients.ts in the project's pop-up
+      showClients: z.boolean().default(false),
     }),
 });
 

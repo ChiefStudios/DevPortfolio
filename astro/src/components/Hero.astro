@@ -2,6 +2,7 @@
 import Chart from './home/Chart.astro';
 import Toolbox from './home/Toolbox.astro';
 import Socials from './Socials.astro';
+import { CLIENTS, WEEKLY_USERS, countWord } from '../data/clients';
 ---
 
 <section class="hero" data-live-stats data-state="loading">
@@ -51,10 +52,10 @@ import Socials from './Socials.astro';
 		<!-- Row 2: intro + toolbox -->
 		<div class="intro" style="grid-area: intro">
 			<p class="eyebrow">Chief-Daniel Osei</p>
-			<h1>I build and run the infrastructure behind real websites.</h1>
+			<h1>I build and run the infrastructure behind websites serving thousands.</h1>
 			<p class="lede">
-				First Class CS graduate from Newcastle and founder of Chief Studios, a web studio. I run five client
-				sites with 1,000+ weekly users, handling the hosting, CI/CD and monitoring myself. Based in Duisburg,
+				First Class CS graduate from Newcastle and founder of Chief Studios, a web studio. I run {countWord(CLIENTS.length)} client
+				sites with {WEEKLY_USERS} weekly users, handling the hosting, CI/CD and monitoring myself. Based in Duisburg,
 				looking for DevOps and cloud roles in Germany and the UK from spring 2027.
 			</p>
 

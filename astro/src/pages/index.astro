@@ -3,6 +3,7 @@ import Hero from '../components/Hero.astro';
 import Projects from '../components/Projects.astro';
 import Posts from '../components/Posts.astro';
 import Layout from '../layouts/Layout.astro';
+import { CLIENTS, WEEKLY_USERS, countWord } from '../data/clients';
 
 const site = 'https://chiefosei.dev';
 const jsonLd = [
@@ -18,7 +19,7 @@ const jsonLd = [
 		name: 'Chief-Daniel Osei',
 		url: site,
 		image: `${site}/og-image.png`,
-		description: 'Builds and runs the infrastructure behind real websites: reproducible environments, CI/CD and monitoring.',
+		description: `Builds and runs the infrastructure behind websites serving thousands: ${countWord(CLIENTS.length)} client sites with ${WEEKLY_USERS} weekly users, with CI/CD, self-hosting and monitoring.`,
 		address: { '@type': 'PostalAddress', addressLocality: 'Duisburg', addressCountry: 'DE' },
 		sameAs: ['https://www.linkedin.com/in/chief-daniel', 'https://github.com/CD-Chief'],
 	},

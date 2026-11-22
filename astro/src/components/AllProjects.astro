@@ -26,7 +26,7 @@ const earlier = allProjects.filter((p) => p.data.archived).sort((a, b) => a.data
 		type="search"
 		id="techFilter"
 		placeholder="Filter by technology (e.g. Docker, Python)"
-		class="field mb-10 max-w-md"
+		class="field mx-auto mb-10 block max-w-md"
 	/>
 
 	<div id="projectsGrid" class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -48,8 +48,8 @@ const earlier = allProjects.filter((p) => p.data.archived).sort((a, b) => a.data
 
 	{earlier.length > 0 && (
 		<section id="earlierWork" class="mt-20" aria-labelledby="earlierWorkTitle">
-			<div class="mb-8 flex flex-col gap-2">
-				<h2 id="earlierWorkTitle" class="eyebrow">Earlier work</h2>
+			<div class="mb-8 flex flex-col items-center gap-2 text-center">
+				<h2 id="earlierWorkTitle" class="eyebrow eyebrow-tag">Earlier work</h2>
 				<p class="max-w-2xl text-sm text-ink-muted">Where I started. Kept to show the progression, not as current work.</p>
 			</div>
 			<div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">

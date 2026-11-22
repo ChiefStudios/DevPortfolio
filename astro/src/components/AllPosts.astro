@@ -3,8 +3,9 @@ import { getCollection } from 'astro:content';
 import PostCard from './PostCard.astro';
 import SectionHeader from './SectionHeader.astro';
 import { slugify } from '../utils/slug';
+import { isPublished } from '../utils/date';
 
-const allPosts = await getCollection('posts');
+const allPosts = await getCollection('posts', ({ data }) => isPublished(data.publishedAt));
 
 const posts = allPosts.sort(
   (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
@@ -21,7 +22,7 @@ const posts = allPosts.sort(
     type="search"
     id="postFilter"
     placeholder="Filter by title, topic or technology"
-    class="field mb-10 max-w-md"
+    class="field mx-auto block mb-10 max-w-md"
   />
 
   <div id="postsGrid" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

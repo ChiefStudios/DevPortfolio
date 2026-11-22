@@ -1,6 +1,7 @@
 ---
 import { render, type CollectionEntry } from 'astro:content';
 import TagList from './TagList.astro';
+import { LISTED_CLIENTS } from '../data/clients';
 
 interface Props {
   projects: CollectionEntry<'projects'>[];
@@ -14,6 +15,7 @@ const renderedProjects = await Promise.all(
     return {
       id: project.data.id,
       tech: project.data.tech,
+      showClients: project.data.showClients,
       Content,
     };
   })
@@ -51,6 +53,16 @@ const renderedProjects = await Promise.all(
             <TagList tags={project.tech} class="mb-6" />
             <div class="prose prose-lg prose-invert prose-site max-w-none">
               <Content />
+              {project.showClients && (
+                <>
+                  <h2>The sites</h2>
+                  <ul>
+                    {LISTED_CLIENTS.map((client) => (
+                      <li>{client.url ? <a href={client.url} target="_blank" rel="noopener">{client.name}</a> : client.name}{client.note ? `: ${client.note}` : ''}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
             </div>
           </div>
         );
